@@ -5,9 +5,12 @@
     <title>Hello Friends</title>
   </head>
   <body>
+      {{title}}
     <h1>
     <ul>
-      {{title}}
+        {{#each list}}
+          <li>{{this}}</li>
+        {{/each}}
     </ul>
   </h1>
   </body>
