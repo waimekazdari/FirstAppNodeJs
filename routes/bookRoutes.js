@@ -31,6 +31,7 @@ bookRouter.route('/')
       books: books
     });
   });
+
 bookRouter.route('/:id')
   .get(function (req,res) {
     var id = req.params.id;
@@ -43,7 +44,7 @@ bookRouter.route('/:id')
         Link:'/Authors',
         Text:'Authors'
       }],
-      books: book[id];
+      book: books[id]
     });
   });
 
