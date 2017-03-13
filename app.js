@@ -7,20 +7,11 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var bookRouter = require('./routes/bookRoutes');
 var app = express();
-var bookRouter = express.Router();
 
-bookRouter.route('/')
-  .get(function (req,res) {
-    res.send('Hello books');
-  });
-app.use('/Books', bookRouter)
 
-bookRouter.route('/singl')
-  .get(function (req,res) {
-    res.send('Hello Signle book');
-  });
+app.use('/Books', bookRouter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
