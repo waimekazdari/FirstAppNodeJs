@@ -12,7 +12,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 
 // add handlbars
 var handlebars= require('express-handlebars')
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 app.get('/',function (req,res) {
-  res.render('index',{title: "hello from render hbs" ,list: ['a','b']});
+  res.render('indexe',{title: "hello from render ejs" ,list: ['a','b']});
 });
 app.use('/users', users);
 
