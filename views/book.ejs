@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> let's take a title</title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <ul>
+  <!-- will do like javascript code -->
+      <% for (var i=0 ;i<nav.length;i++){ %>
+      <li><a href="<%=nav[i].Link %>"><%=nav[i].Text%></a></li>
+      <% } %>
+    </ul>
+    <h1>
+          <p> 
+           <%=book.title%><br/>
+           <%=book.genre %><br/>
+           <%=book.author %><br/>
+           <%=book.read %><br/>
+          </p>
+    </h1>
+  </body>
+</html>
