@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> let's take a title</title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <ul>
+  <!-- will do like javascript code -->
+      <% for (var i=0 ;i<nav.length;i++){ %>
+      <li><a href="<%=nav[i].Link %>"><%=nav[i].Text%></a></li>
+      <% } %>
+    </ul>
+    <h1>
+      <% for (var i =0 ; i<books.length;i++) { %>
+          <p> book number <%=i %> <br/>
+           <%=books[i].title%><br/>
+           <%=books[i].genre %><br/>
+           <%=books[i].author %><br/>
+           <%=books[i].read %><br/>
+          </p>
+        <% } %>
+    </h1>
+  </body>
+</html>
