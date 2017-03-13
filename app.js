@@ -22,7 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+//app.use('/', index);
+app.get('/',function (req,res) {
+  res.render('index',{list: ['a','b']});
+});
 app.use('/users', users);
 
 // catch 404 and forward to error handler
