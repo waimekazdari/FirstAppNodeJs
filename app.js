@@ -9,6 +9,18 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var bookRouter = express.Router();
+
+bookRouter.route('/')
+  .get(function (req,res) {
+    res.send('Hello books');
+  });
+app.use('/Books', bookRouter)
+
+bookRouter.route('/singl')
+  .get(function (req,res) {
+    res.send('Hello Signle book');
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,7 +40,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 app.get('/',function (req,res) {
-  res.render('indexe',{title: "hello from render ejs" ,list: ['a','b']});
+  res.render('indexe',{
+    title: "hello from render ejs" ,
+    nav:[{
+      Link:'/books',
+      Text:'Books'
+  },{
+      Link:'/Authors',
+      Text:'Authors'
+  }]
+});
 });
 app.use('/users', users);
 
