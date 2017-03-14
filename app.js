@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var bookRouter = require('./routes/bookRoutes');
 var nav = [{
   Link:'/Books',
   Text :'Books'
@@ -15,6 +14,7 @@ var nav = [{
   Link:'/Authors',
   Text:'Authors'
 }];
+var bookRouter = require('./routes/bookRoutes')(nav);
 var adminRouter = require('./routes/adminRoutes')(nav);
 var app = express();
 
