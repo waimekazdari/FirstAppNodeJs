@@ -8,10 +8,18 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var bookRouter = require('./routes/bookRoutes');
+var nav = [{
+  Link:'/Books',
+  Text :'Books'
+},{
+  Link:'/Authors',
+  Text:'Authors'
+}];
+var adminRouter = require('./routes/adminRoutes')(nav);
 var app = express();
 
-
 app.use('/Books', bookRouter);
+app.use('/Admin',adminRouter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
