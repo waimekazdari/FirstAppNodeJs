@@ -1,51 +1,40 @@
 var express = require('express')
 var bookRouter = express.Router();
-
-
-var books =[
-      {
-        title:'war ad peace',
-        genre:'historical fiction',
-        author:'Len Nicolayevich Tolstory',
-        read:false
-      },
-      {
-        title:'les misérables',
-        genre:'historical fiction',
-        author:'victor hugo',
-        read:false
-      }
-]
-
-bookRouter.route('/')
-  .get(function (req,res) {
-    res.render('books',{
-      title:'Books',
-      nav:[{
-        Link:'/Books',
-        Text:'Books'
-      },{
-        Link:'/Authors',
-        Text:'Authors'
-      }],
-      books: books
+var mongodb = require('mongodb').MongoClient;
+var objectId = require('mongodb').ObjectID;
+var router = function (nav) {
+  bookRouter.route('/')
+    .get(function (req,res) {
+        var url ='mongodb://localhost:27017/formationnode';
+        mongodb.connect(url,function(err, db){
+          var collection= db.collection('books');
+          collection.find({}).toArray(
+            function(err,results){
+              res.render('books',{
+                title:'Books',
+                nav:nav,
+                books:results
+              });
+          });
+        });
     });
-  });
-
-bookRouter.route('/:id')
-  .get(function (req,res) {
-    var id = req.params.id;
-    res.render('book',{
-      title:'Books',
-      nav:[{
-        Link:'/Books',
-        Text:'Books'
-      },{
-        Link:'/Authors',
-        Text:'Authors'
-      }],
-      book: books[id]
-    });
-  });
-
-module.exports=bookRouter;
+    bookRouter.route('/:id')
+      .get(function (req,res) {
+        var id = new objectId(req.params.id);
+        var url = 'mongodb://localhost:27017/formationnode';
+        mongodb.connect(url,function(err, db){
+          var collection=db.collection('books');
+          collection.findOne({_id: id},
+          function(err, results){
+              res.render('book',{
+                title:'book',
+                nav:nav,
+                book:results
+              });
+            }
+          );
+        });
+      });
+      return bookRouter;
+}
+module.exports=router;
