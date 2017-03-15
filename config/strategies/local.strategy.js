@@ -13,7 +13,5 @@ module.exports = function () {
           password: password
         };
         done(null, user);
-      }
-
-  ));
+      }));
 };
