@@ -2,8 +2,22 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+//3 lignes for Authentification
 var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var session = require('express-session');
+
+//package that can parss body of what ever come in to or request
 var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({secret: 'node'}));
+/*
+app.use(passport.initialize());
+app.use(passport.session());
+*/
+require('./config/passport')(app);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -16,11 +30,12 @@ var nav = [{
 }];
 var bookRouter = require('./routes/bookRoutes')(nav);
 var adminRouter = require('./routes/adminRoutes')(nav);
+var authRouter = require('./routes/authRoutes')(nav);
 var app = express();
 
 app.use('/Books', bookRouter);
 app.use('/Admin',adminRouter);
-
+app.use('/Auth',authRouter);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -32,8 +47,6 @@ app.engine('.hbs',handlebars({extname: '.hbs'}));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
