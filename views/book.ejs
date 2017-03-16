@@ -12,13 +12,16 @@
       <li><a href="<%=nav[i].Link %>"><%=nav[i].Text%></a></li>
       <% } %>
     </ul>
-    <h1>
-          <p> 
+    <h4>
+          <p>
+          <a href ="#"><img alt ="" src ="<%=book.book.image_url%>"
+            style="width:100px,height:100px" > </a></br>
            <%=book.title%><br/>
            <%=book.genre %><br/>
            <%=book.author %><br/>
            <%=book.read %><br/>
+           <%=book.book.description %><br/>
           </p>
-    </h1>
+    </h4>
   </body>
 </html>
