@@ -5,15 +5,17 @@ var mongodb = require('mongodb')
 
 var books =[
       {
-        title:'war ad peace',
+        title:'war and peace',
         genre:'historical fiction',
         author:'Len Nicolayevich Tolstory',
+        bookId: 656,
         read:false
       },
       {
         title:'les misérables',
         genre:'historical fiction',
         author:'victor hugo',
+        bookId:24280,
         read:false
       }
 ];
