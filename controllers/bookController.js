@@ -28,11 +28,24 @@ var bookController = function(bookService, nav){
         var collection=db.collection('books');
         collection.findOne({_id: id},
         function(err, results){
+          if(results.bookId){
+            bookService.getBookById(results.bookId,
+                        function (err, boook) {
+                          results.book = boook;
+                          res.render('book',{
+                            title:'book',
+                            nav:nav,
+                            book:results
+                          });
+                        });
+          }else{
             res.render('book',{
               title:'book',
               nav:nav,
               book:results
             });
+          }
+
           }
         );
       });
